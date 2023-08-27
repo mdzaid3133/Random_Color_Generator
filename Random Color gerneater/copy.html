@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Copy Example</title>
+     <style>
+.color-box {
+    width: 100px;
+    height: 100px;
+    background-color: #ff5733; /* You can set your desired initial color here */
+    cursor: pointer;
+}
+
+     </style>
+</head>
+<body>
+    <div id="colorBox" class="color-box" onclick="copyColor()">
+    
+    </div>
+
+
+    <script>
+        // script.js
+function copyColor() {
+    // Get the color value from the background-color property
+    const colorBox = document.getElementById("colorBox");
+    const colorValue = window.getComputedStyle(colorBox).backgroundColor;
+
+    // Create a textarea element to hold the code and set its value
+    const textarea = document.createElement("textarea");
+    textarea.value = `background-color: ${colorValue};`;
+
+    // Append the textarea to the body and select its content
+    document.body.appendChild(textarea);
+    textarea.select();
+    
+    // Copy the content to the clipboard
+    document.execCommand("copy");
+
+    // Remove the textarea element from the DOM
+    document.body.removeChild(textarea);
+
+    // Provide some feedback to the user (optional)
+    alert("Color code copied to clipboard: " + colorValue);
+}
+
+    </script>
+</body>
+</html>
